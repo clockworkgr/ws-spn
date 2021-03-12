@@ -18,7 +18,7 @@ ws.on('open', function open() {
     jsonrpc: '2.0',
     method: 'subscribe',
     id: '1',
-    params: ["tm.event='Tx'"],
+    params: ["tm.event='Tx'  AND message.action='chain_create'"],
   }));
 });
 
