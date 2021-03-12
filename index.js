@@ -23,8 +23,10 @@ ws.on('open', function open() {
 });
 
 ws.on('message', function incoming(data) {
-  let encoded= atob(data.result.data.value.TxResult.result.data)
-  let binary = encoded.getBytes()
-  console.log('Chain Create Captured!!!')
-  console.log(MsgData.decode(new Uint8Array(binary.slice(3)))) //slice 3 is removing the length prefix framing which must be handled outside the deseriealizer
+  if (data.result && data.result.data && data.result.data.type=='tendermint/event/Tx') {
+    let encoded= atob(data.result.data.value.TxResult.result.data)
+    let binary = encoded.getBytes()
+    console.log('Chain Create Captured!!!')
+    console.log(MsgData.decode(new Uint8Array(binary.slice(3)))) //slice 3 is removing the length prefix framing which must be handled outside the deseriealizer
+  }
 });
