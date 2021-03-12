@@ -1,0 +1,15 @@
+syntax="proto3";
+
+message MsgData {
+  string msg_type = 1;
+  Chain  data     = 2;
+}
+message Chain {
+  string chainID = 1;
+  string creator = 2;
+  repeated string peers = 3; 
+  string sourceURL = 4; 
+  string sourceHash  = 5; 
+  int64 createdAt = 6;
+  bytes genesis = 7;
+}
